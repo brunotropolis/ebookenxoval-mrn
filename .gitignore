@@ -1,0 +1,4 @@
+_build/
+CLAUDE.md
+server.js
+.claude/
