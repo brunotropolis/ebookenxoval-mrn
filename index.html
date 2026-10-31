@@ -15,10 +15,9 @@
 <link rel="preload" as="image" href="assets/img/fundo-capa.webp">
 <script>
 // folha de tamanho fixo (como PDF): desenhada em 380px e ampliada/reduzida pra caber na tela
-// tela larga (computador): 2 folhas lado a lado, cabendo na altura da tela, como PDF em modo de duas páginas
-var FW=380,FH=760,K=1;function fitZ(){var d=document.documentElement,w=d.clientWidth,pad=Math.min(26,Math.max(10,w*.03)),two=w>=900,z;
-  if(two)z=Math.min((w-2*pad-24)/2/FW,(innerHeight-70)/FH)*K;else z=Math.min(w-2*pad,600*K)/FW;
-  d.classList.toggle('dupla',two);d.style.setProperty('--z',z.toFixed(4))}fitZ();
+// uma folha embaixo da outra; no computador a folha fica com a largura de um PDF aberto (720 px, −/+ ajustam)
+var FW=380,K=1;function fitZ(){var d=document.documentElement,w=d.clientWidth,pad=Math.min(26,Math.max(10,w*.03));
+  d.style.setProperty('--z',(Math.min(w-2*pad,720*K)/FW).toFixed(4))}fitZ();
 </script>
 <style>
 :root{
@@ -53,8 +52,6 @@ a{color:inherit}
 
 /* folhas */
 .viewer{padding:22px clamp(10px,3vw,26px) 60px}
-html.dupla .viewer{display:grid;grid-template-columns:repeat(2,max-content);justify-content:center;column-gap:24px}
-html.dupla .page{margin:0 0 24px}
 .page{position:relative;max-width:var(--maxw);margin:0 auto 26px;background:var(--sheet);border-radius:var(--radius);overflow:hidden;
   box-shadow:0 1px 0 rgba(0,0,0,.04),0 18px 40px -22px rgba(0,0,0,.6);
   padding:clamp(30px,24px,60px) clamp(22px,24px,64px) 84px}
